@@ -14,10 +14,15 @@ export default function SignIn({ history }) {
   const [localStorageEmail] = useState(localStorage.getItem("email"));
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const textValidatorComponent = useRef();
 
   const classes = useStyles();
+
+  const validatorListener = (result) => {
+    setDisabled(!result);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -67,6 +72,7 @@ export default function SignIn({ history }) {
             autoFocus
             validators={["required", "isEmail"]}
             errorMessages={["This field is required", "Email is not valid."]}
+            validatorListener={validatorListener}
           />
           <Button
             type="submit"
@@ -74,6 +80,7 @@ export default function SignIn({ history }) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={disabled}
           >
             {localStorageEmail ? "Log In" : "Sign In"}
           </Button>

@@ -1,6 +1,9 @@
 import { CircularProgress, Snackbar } from "@material-ui/core";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { usersContext } from "../../App";
+import React from "react";
+import ContainedButtons from "../../components/EditBtn/EditBtn";
+import { Link } from "react-router-dom";
 
 const SingleUserPage = (props) => {
   const { users, setUsers } = useContext(usersContext);
@@ -64,7 +67,16 @@ const SingleUserPage = (props) => {
           />
         </Fragment>
       ) : user ? (
-        <h1>{user.name}</h1>
+        <>
+          <h1>{user.name}</h1>
+          <Link
+            to={{
+              pathname: `/users/${user.id}/edit`,
+            }}
+          >
+            <ContainedButtons></ContainedButtons>
+          </Link>
+        </>
       ) : (
         <CircularProgress />
       )}
