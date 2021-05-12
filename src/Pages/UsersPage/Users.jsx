@@ -13,37 +13,29 @@ const Users = () => {
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
-    // TODO: Remove timeout when dev is finished
-    setTimeout(() => {
-      if (!users.loaded && !users.loading) {
-        setUsers({
-          data: [],
-          loaded: false,
-          loading: true,
-        });
-        fetch("https://jsonplaceholder.typicode.com/users")
-          .then((response) => {
-            if (response.status !== 200) {
-              setShowError(true);
-              setUsers({
-                data: [],
-                loaded: true,
-                loading: false,
-              });
-              return Promise.reject();
-            } else {
-              return response.json();
-            }
-          })
-          .then((data) => {
+    if (!users.loaded && !users.loading) {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+          if (response.status !== 200) {
+            setShowError(true);
             setUsers({
-              data,
+              data: [],
               loaded: true,
               loading: false,
             });
+            return Promise.reject();
+          } else {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          setUsers({
+            data,
+            loaded: true,
+            loading: false,
           });
-      }
-    }, 1000);
+        });
+    }
   }, [users.loaded, users.loading, setUsers]);
 
   const handleClose = () => {
@@ -64,21 +56,19 @@ const Users = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.data.map((user) => (
-              <User key={user.id} user={user} />
-            ))}
+            {!users.loading &&
+              users.loaded &&
+              users.data.map((user) => <User key={user.id} user={user} />)}
           </TableBody>
         </Table>
       </TableContainer>
-      {users.loading || !users.loaded ? <CircularProgress /> : null}
-      {showError && (
-        <Snackbar
-          message="There was an error with loading users' information. Please reload the page."
-          open={showError}
-          autoHideDuration={10000}
-          onClose={handleClose}
-        />
-      )}
+      {(users.loading || !users.loaded) && <CircularProgress />}
+      <Snackbar
+        message="There was an error with loading users' information. Please reload the page."
+        open={showError}
+        autoHideDuration={10000}
+        onClose={handleClose}
+      />
     </div>
   );
 };

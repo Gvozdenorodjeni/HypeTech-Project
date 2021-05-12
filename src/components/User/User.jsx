@@ -15,10 +15,10 @@ const User = ({ user }) => {
         {user.name}
       </TableCell>
 
-      <TableCell align="right">{user.id}</TableCell>
-      <TableCell align="right">{user.email}</TableCell>
-      <TableCell align="right">{user.address.street}</TableCell>
-      <TableCell align="right">{user.company.name}</TableCell>
+      <TableCell align="right">{user?.id}</TableCell>
+      <TableCell align="right">{user?.email}</TableCell>
+      <TableCell align="right">{user?.address?.street}</TableCell>
+      <TableCell align="right">{user?.company?.name}</TableCell>
     </TableRow>
   );
 };

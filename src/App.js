@@ -4,31 +4,54 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import SignIn from "./Pages/Login/Login";
 import Users from "./Pages/UsersPage/Users";
 import SingleUserPage from "./Pages/SingleUserPage/SingleUserPage";
-import CreateAndEditUser from "./Pages/CreateAndEditUser/CreateAndEditUser";
+import CreateAndEditUserPage from "./Pages/CreateAndEditUserPage/CreateAndEditUserPage";
 import SearchAppBar from "./components/Navbar/Navbar";
+
 export const usersContext = React.createContext({});
+export const adminContext = React.createContext({});
 
 function App() {
+  const [admin, setAdmin] = useState({
+    registered: localStorage.getItem("email"),
+    current: localStorage.getItem("email"), // TODO
+  });
   const [users, setUsers] = useState({
     data: [],
     loading: false,
     loaded: false,
   });
+  const { Provider: AdminProvider } = adminContext;
   const { Provider: UsersProvider } = usersContext;
 
   return (
     <div className="App">
-      <UsersProvider value={{ users, setUsers }}>
-        <SearchAppBar loaded={users.loaded} />
-        <Switch>
-          <Route exact path="/" component={SignIn} />
-          <Route exact path="/users" component={Users} />
-          <Route exact path="/users/create" component={CreateAndEditUser} />
-          <Route exact path="/users/:id/edit" component={CreateAndEditUser} />
-          <Route exact path="/users/:id" component={SingleUserPage} />
-          <Route path="/" render={() => <Redirect to="/" />} />
-        </Switch>
-      </UsersProvider>
+      <AdminProvider value={{ admin, setAdmin }}>
+        <UsersProvider value={{ users, setUsers }}>
+          <SearchAppBar adminLoggedIn={admin.current} />
+          <Switch>
+            {admin.current && (
+              <Route
+                exact
+                path="/users/create"
+                component={CreateAndEditUserPage}
+              />
+            )}
+            {admin.current && (
+              <Route
+                exact
+                path="/users/:id/edit"
+                component={CreateAndEditUserPage}
+              />
+            )}
+            {admin.current && (
+              <Route exact path="/users/:id" component={SingleUserPage} />
+            )}
+            {admin.current && <Route exact path="/users" component={Users} />}
+            <Route exact path="/" component={SignIn} />
+            <Route path="/" render={() => <Redirect to="/" />} />
+          </Switch>
+        </UsersProvider>
+      </AdminProvider>
     </div>
   );
 }

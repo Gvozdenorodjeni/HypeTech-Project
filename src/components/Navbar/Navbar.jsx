@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { usersContext } from "../../App";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     flexGrow: 1,
+    color: "white",
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
@@ -28,19 +29,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar(props) {
-  console.log(props.loaded, "AAAA");
-  const { users } = useContext(usersContext);
-  console.log(users);
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          {props.adminLoggedIn && (
+            <IconButton component={Link} to="/users">
+              <HomeIcon />
+            </IconButton>
+          )}
           <Typography className={classes.title} variant="h6" noWrap>
             Users - App
           </Typography>
-          {props.loaded ? (
+          {props.adminLoggedIn && (
             <Button
               className={classes.button}
               component={Link}
@@ -48,7 +51,7 @@ export default function SearchAppBar(props) {
             >
               Create
             </Button>
-          ) : null}
+          )}
         </Toolbar>
       </AppBar>
     </div>

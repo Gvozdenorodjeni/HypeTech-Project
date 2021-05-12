@@ -1,5 +1,5 @@
 import "./style.js";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,29 +9,37 @@ import Container from "@material-ui/core/Container";
 import { useStyles } from "./style";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { Snackbar } from "@material-ui/core";
+import { adminContext } from "../../App";
+import { useContext } from "react";
 
 export default function SignIn({ history }) {
-  const [localStorageEmail] = useState(localStorage.getItem("email"));
+  const { admin, setAdmin } = useContext(adminContext);
   const [email, setEmail] = useState("");
   const [showError, setShowError] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
-  const textValidatorComponent = useRef();
-
   const classes = useStyles();
 
-  const validatorListener = (result) => {
-    setDisabled(!result);
+  const validatorListener = (isValid) => {
+    setDisabled(!isValid);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!localStorageEmail) {
+    if (!admin.registered) {
       localStorage.setItem("email", email);
-    } else if (localStorageEmail !== email) {
+      setAdmin({
+        registered: email,
+        current: email,
+      });
+    } else if (admin.registered !== email) {
       setShowError(true);
       return;
     }
+    setAdmin({
+      registered: admin.registered,
+      current: email,
+    });
     history.push("/users");
   };
 
@@ -59,7 +67,6 @@ export default function SignIn({ history }) {
           noValidate
         >
           <TextValidator
-            ref={textValidatorComponent}
             onChange={handleChange}
             value={email}
             variant="outlined"
@@ -82,7 +89,7 @@ export default function SignIn({ history }) {
             className={classes.submit}
             disabled={disabled}
           >
-            {localStorageEmail ? "Log In" : "Sign In"}
+            {admin.registered ? "Log In" : "Sign In"}
           </Button>
         </ValidatorForm>
       </div>
