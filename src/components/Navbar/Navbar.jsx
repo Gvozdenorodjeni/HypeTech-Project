@@ -1,36 +1,18 @@
+import { useContext } from "react";
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import { Button, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-
-  button: {
-    backgroundColor: "#ffbb33",
-    color: "white",
-  },
-
-  title: {
-    flexGrow: 1,
-    color: "white",
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  //
-}));
+import useStyles from "./style";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 export default function SearchAppBar(props) {
+  console.log(props);
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -49,7 +31,16 @@ export default function SearchAppBar(props) {
               component={Link}
               to={"/users/create"}
             >
-              Create
+              Create User
+            </Button>
+          )}
+
+          <Button onClick={props.toggleDarkTheme} style={{ color: "white" }}>
+            <Brightness4Icon color="white" />
+          </Button>
+          {props.adminLoggedIn && (
+            <Button className={classes.button} onClick={props.logout}>
+              Logout <ExitToAppIcon color="white" />
             </Button>
           )}
         </Toolbar>

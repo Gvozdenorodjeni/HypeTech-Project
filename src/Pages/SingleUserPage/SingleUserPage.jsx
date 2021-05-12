@@ -1,18 +1,22 @@
+import React from "react";
+import useStyles from "./style";
+import OnePersonDetailsTable from "../../components/OnePersonDetailsTabel/OnePersonDetailsTable";
 import { Button, CircularProgress, Snackbar } from "@material-ui/core";
 import { useContext, useEffect, useState } from "react";
 import { usersContext } from "../../App";
-import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { useHistory } from "react-router-dom";
 
 const SingleUserPage = (props) => {
   const { users, setUsers } = useContext(usersContext);
-  const history = useHistory();
   const [oneUserLoaded, setOneUserLoaded] = useState(false);
   const [oneUserLoading, setOneUserLoading] = useState(false);
   const [showError, setShowError] = useState(false);
+
+  const history = useHistory();
+  const classes = useStyles();
 
   const paramsId = Number(props.match.params.id);
   const user = users.data.find((u) => {
@@ -101,7 +105,7 @@ const SingleUserPage = (props) => {
         !users.loading &&
         user ? (
         <>
-          <h1>{user.name}</h1>
+          <OnePersonDetailsTable user={user}></OnePersonDetailsTable>
           <Button
             component={Link}
             to={{
@@ -111,6 +115,7 @@ const SingleUserPage = (props) => {
             color="primary"
             size="small"
             startIcon={<EditIcon />}
+            className={classes.edit}
           >
             Edit
           </Button>
@@ -120,6 +125,7 @@ const SingleUserPage = (props) => {
             color="secondary"
             size="small"
             startIcon={<DeleteIcon />}
+            className={classes.delete}
           >
             Delete
           </Button>

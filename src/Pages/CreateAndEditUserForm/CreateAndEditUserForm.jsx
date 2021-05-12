@@ -88,10 +88,18 @@ const CreateAndEditUserForm = (props) => {
   return (
     <ValidatorForm
       onSubmit={handleSubmit}
-      className={classes.root}
       noValidate
       autoComplete="off"
       style={{ display: hide ? "none" : undefined }}
+      className={classes.root}
+      style={{
+        marginTop: "40px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "auto",
+      }}
     >
       <TextValidator
         value={newUserName || ""}

@@ -2,19 +2,21 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: "30px",
+    flexGrow: 1,
   },
-  infoLight: {
-    backgroundColor: "#3D84B8",
+
+  button: {
+    backgroundColor: "#3d84b8",
     color: "white",
   },
-  fontColor: {
-    fontWeight: "500",
+
+  title: {
+    flexGrow: 1,
     color: "white",
-  },
-  infoDark: {
-    backgroundColor: "#3D84B8",
-    color: "white",
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
   },
 }));
 export default useStyles;

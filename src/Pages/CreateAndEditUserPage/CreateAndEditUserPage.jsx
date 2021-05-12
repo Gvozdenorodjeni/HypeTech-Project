@@ -3,10 +3,8 @@ import { useEffect, useState, useContext } from "react";
 import { usersContext } from "../../App";
 import React from "react";
 import CreateAndEditUserForm from "../CreateAndEditUserForm/CreateAndEditUserForm";
-
 const CreateAndEditUserPage = (props) => {
   const { users, setUsers } = useContext(usersContext);
-
   const [showError, setShowError] = useState(false);
   const [oneUserLoaded, setOneUserLoaded] = useState(false);
   const [oneUserLoading, setOneUserLoading] = useState(false);
@@ -37,7 +35,7 @@ const CreateAndEditUserPage = (props) => {
           defaultDisabledForm: true,
           defaultUserName: user.name,
           defaultUserEmail: user.email,
-          url: `https://jsonplaceholder.typicode.com/usersx/${props.match.params.id}`,
+          url: `https://jsonplaceholder.typicode.com/users/${props.match.params.id}`,
           method: "PUT",
           getNewSetOfUsers: (usersData, data) => {
             const userIndex = usersData.findIndex((u) => u.id === data.id);
