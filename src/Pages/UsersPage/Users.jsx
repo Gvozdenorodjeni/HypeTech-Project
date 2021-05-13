@@ -23,27 +23,29 @@ const Users = () => {
   const classes = useStyles();
   useEffect(() => {
     if (!users.loaded && !users.loading) {
-      fetch("https://jsonplaceholder.typicode.com/users")
-        .then((response) => {
-          if (response.status !== 200) {
-            setShowError(true);
+      setTimeout(() => {
+        fetch("https://jsonplaceholder.typicode.com/users")
+          .then((response) => {
+            if (response.status !== 200) {
+              setShowError(true);
+              setUsers({
+                data: [],
+                loaded: true,
+                loading: false,
+              });
+              return Promise.reject();
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
             setUsers({
-              data: [],
+              data,
               loaded: true,
               loading: false,
             });
-            return Promise.reject();
-          } else {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          setUsers({
-            data,
-            loaded: true,
-            loading: false,
           });
-        });
+      }, 2000);
     }
   }, [users.loaded, users.loading, setUsers]);
 
@@ -57,7 +59,7 @@ const Users = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
   return (
-    <div>
+    <div className={classes.divStyle}>
       <TableContainer className={classes.root}>
         <Table>
           <TableHead

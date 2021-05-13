@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# HypeTech-Project
+## _CRUD APP_
+[Github »](https://github.com/Gvozdenorodjeni/HypeTech-Project)
+[Demo »](https://gifted-clarke-494efa.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[//]: # (ABOUT THE PROJECT)
 
-## Available Scripts
+## About The Project ##
 
-In the project directory, you can run:
+CRUD app with https://jsonplaceholder.typicode.com API, where you can login, logout, create, read, update and delete users.
 
-### `npm start`
+### Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [material ui](https://material-ui.com/)
+- [JavaScript](https://www.javascript.com/)
+- [React](https://reactjs.org/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[//]: # (GETTING STARTED)
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To get a local copy up and running follow these simple example steps.
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Gvozdenorodjeni/HypeTech-Project
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Running locally
+```sh
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[//]: # (CONTRIBUTING)
 
-### `npm run eject`
+## Project details
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x] User register
+- [x] User login
+- [x] Create new user
+- [x] Read users
+- [x] Update a user
+- [x] Delete a user
+- [x] Light/dark mode
+- [x] Loading states
+- [x] Material UI
+- [ ] TypeScript
+- [ ] Cypress tests
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project limitations
+ - A demo user-register method was used where user email is saved in local storage.
+ - Login is saved only locally so leaving the page will cause user to logout.
+ - I've assumed that method is only a demo step, so some functionality is made to allow for permanent login, namely, visiting a page for single user is causing only one user to be loaded in context, to prevent loading all users at the same time needlessly.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[//]: # (CONTACT)
 
-## Learn More
+## Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Author: Vladimir Gvozdenovic
+Email: vladagvozdenovic1991@gmail.com

@@ -11,7 +11,6 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 export default function SearchAppBar(props) {
-  console.log(props);
   const classes = useStyles();
   return (
     <div className={classes.root}>

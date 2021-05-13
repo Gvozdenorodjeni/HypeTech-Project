@@ -33,7 +33,6 @@ function App() {
   const { Provider: ThemeProvider } = themeContext;
 
   const logout = () => {
-    console.log("asd");
     setAdmin({
       registered: admin.registered,
       current: null,

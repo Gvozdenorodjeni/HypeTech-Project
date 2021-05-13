@@ -47,18 +47,18 @@ const OnePersonDetailsTable = (props) => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell className={classes.tableCell}>{user.id}</TableCell>
+            <TableCell className={classes.tableCell}>{user?.id}</TableCell>
             <TableCell
               className={classes.tableCell}
-            >{`${user.name} ${user.username}`}</TableCell>
-            <TableCell className={classes.tableCell}>{user.email}</TableCell>
+            >{`${user?.name} ${user?.username}`}</TableCell>
+            <TableCell className={classes.tableCell}>{user?.email}</TableCell>
             <TableCell className={classes.tableCell}>
-              {user.address.street}
+              {user?.address?.street}
             </TableCell>
-            <TableCell className={classes.tableCell}>{user.phone}</TableCell>
-            <TableCell className={classes.tableCell}>{user.website}</TableCell>
+            <TableCell className={classes.tableCell}>{user?.phone}</TableCell>
+            <TableCell className={classes.tableCell}>{user?.website}</TableCell>
             <TableCell className={classes.tableCell}>
-              {user.company.name}
+              {user?.company?.name}
             </TableCell>
           </TableRow>
         </TableBody>

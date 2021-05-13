@@ -103,7 +103,11 @@ const CreateAndEditUserPage = (props) => {
       </>
     );
   } else if (loading) {
-    information = <CircularProgress />;
+    information = (
+      <CircularProgress
+        style={{ marginLeft: "50%", transform: "translateX(-50%)" }}
+      />
+    );
   }
 
   return (
