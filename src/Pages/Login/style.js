@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -8,10 +7,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: "#F44336",
-  },
+
   form: {
     width: "100%",
     marginTop: theme.spacing(1),

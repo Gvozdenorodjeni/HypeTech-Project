@@ -16,36 +16,34 @@ import useStyles from "./style";
 
 const Users = () => {
   const { users, setUsers } = useContext(usersContext);
-  const { theme, setTheme } = useContext(themeContext);
+  const { theme } = useContext(themeContext);
   const [showError, setShowError] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0);
   const classes = useStyles();
   useEffect(() => {
     if (!users.loaded && !users.loading) {
-      setTimeout(() => {
-        fetch("https://jsonplaceholder.typicode.com/users")
-          .then((response) => {
-            if (response.status !== 200) {
-              setShowError(true);
-              setUsers({
-                data: [],
-                loaded: true,
-                loading: false,
-              });
-              return Promise.reject();
-            } else {
-              return response.json();
-            }
-          })
-          .then((data) => {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+          if (response.status !== 200) {
+            setShowError(true);
             setUsers({
-              data,
+              data: [],
               loaded: true,
               loading: false,
             });
+            return Promise.reject();
+          } else {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          setUsers({
+            data,
+            loaded: true,
+            loading: false,
           });
-      }, 2000);
+        });
     }
   }, [users.loaded, users.loading, setUsers]);
 
@@ -58,6 +56,7 @@ const Users = () => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
+  console.log(users);
   return (
     <div className={classes.divStyle}>
       <TableContainer className={classes.root}>

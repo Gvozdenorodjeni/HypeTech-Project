@@ -1,5 +1,14 @@
 # HypeTech-Project
 
+# NOTE:15.5.2021
+
+Version 1.0 should be used for interview purposes and it is located on master branch.
+All other versions were used for exercise only.
+Following features were added later:
+
+- Some files migrated to TypeScript.
+- Small style issues fixed.
+
 ## _CRUD APP_
 
 [Github »](https://github.com/Gvozdenorodjeni/HypeTech-Project)

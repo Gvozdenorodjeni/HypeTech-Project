@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -10,7 +9,13 @@ import useStyles from "./style";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 
-export default function SearchAppBar(props) {
+type SearchAppBarProps = {
+  adminLoggedIn: boolean;
+  toggleDarkTheme: MouseEventHandler;
+  logout: MouseEventHandler;
+};
+
+export default function SearchAppBar(props: SearchAppBarProps) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -34,12 +39,12 @@ export default function SearchAppBar(props) {
             </Button>
           )}
 
-          <Button onClick={props.toggleDarkTheme} style={{ color: "white" }}>
-            <Brightness4Icon color="white" />
+          <Button onClick={props.toggleDarkTheme} style={{ color: "default" }}>
+            <Brightness4Icon color="action" />
           </Button>
           {props.adminLoggedIn && (
             <Button className={classes.button} onClick={props.logout}>
-              Logout <ExitToAppIcon color="white" />
+              Logout <ExitToAppIcon color="inherit" />
             </Button>
           )}
         </Toolbar>
