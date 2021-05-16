@@ -56,7 +56,6 @@ const Users = () => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
-  console.log(users);
   return (
     <div className={classes.divStyle}>
       <TableContainer className={classes.root}>

@@ -14,7 +14,34 @@ import HttpIcon from "@material-ui/icons/Http";
 import BusinessIcon from "@material-ui/icons/Business";
 import useStyles from "./style";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
-const OnePersonDetailsTable = (props) => {
+
+type OnePersonDetailsTableProps = {
+  user: {
+    email: string;
+    id: number;
+    name: string;
+    address?: {
+      city?: string;
+      geo?: {
+        lat?: string;
+        lng?: string;
+      };
+      street?: string;
+      suite?: string;
+      zipcode?: string;
+    };
+    company?: {
+      bs?: string;
+      catchPhrase?: string;
+      name?: string;
+    };
+    phone?: string;
+    username?: string;
+    website?: string;
+  };
+};
+
+const OnePersonDetailsTable = (props: OnePersonDetailsTableProps) => {
   const classes = useStyles();
   const user = props.user;
   return (

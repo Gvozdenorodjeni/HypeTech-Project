@@ -3,12 +3,39 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import useStyles from "./style";
 
-const User = (props) => {
+type UserProps = {
+  user: {
+    email: string;
+    id: number;
+    name: string;
+    address?: {
+      city?: string;
+      geo?: {
+        lat?: string;
+        lng?: string;
+      };
+      street?: string;
+      suite?: string;
+      zipcode?: string;
+    };
+    company?: {
+      bs?: string;
+      catchPhrase?: string;
+      name?: string;
+    };
+    phone?: string;
+    username?: string;
+    website?: string;
+  };
+  theme: any;
+};
+
+const User = (props: UserProps) => {
   const history = useHistory();
   const user = props.user;
   const theme = props.theme;
 
-  const handleRowClick = (id) => {
+  const handleRowClick = (id: number) => {
     history.push(`/users/${id}`);
   };
   const classes = useStyles();
